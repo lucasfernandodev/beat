@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "es2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "lib": ["ESNext"],
+    "outDir": "build",
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "resolveJsonModule": true, 
+    "sourceMap": true,
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/client/**/*",
+    "src/**/*.test.ts"
+  ]
+}

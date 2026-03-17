@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum SyncStatus {
+  PENDING
+  SYNCED
+  FAILED
+}
+
+model Patient {
+  id       String @id @default(uuid())
+  username String @unique
+  name     String
+
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+  sessions  MeasurementSession[]
+}
+
+model MeasurementSession {
+  id        String  @id @default(uuid())
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  measuredAt DateTime
+  pressures  Pressure[]
+  annotation String?
+
+  // Sync with cloud
+  syncStatus SyncStatus @default(PENDING)
+  syncedAt   DateTime?
+  externalId String? // id do Notion
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([patientId, measuredAt])
+  @@index([syncStatus])
+}
+
+model Pressure {
+  id String @id @default(uuid())
+
+  systolic  Int
+  diastolic Int
+  heartRate Int?
+
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  session   MeasurementSession @relation(fields: [sessionId], references: [id])
+  sessionId String
+}
