@@ -19,6 +19,12 @@ export class Server {
     this.fs.get('/', (req, reply) => {
       return reply.html()
     })
+    this.fs.get('/*', (req, reply) => {
+      if (req.url.startsWith('/api/')) {
+        return reply.callNotFound()
+      }
+      return reply.html()
+    })
   }
 
   private start = async () => {
