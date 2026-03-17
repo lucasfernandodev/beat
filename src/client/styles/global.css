@@ -1,0 +1,30 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: #050505;
+  color: #f2f2f2;
+  font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+body,
+input,
+button {
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

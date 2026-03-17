@@ -1,0 +1,28 @@
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header {
+  height: 100vh;
+  width: 70px;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0px;
+  border-right: 1px solid #1f1f1f;
+
+  & img {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.main {
+  width: calc(100vw - 70px);
+  height: auto;
+}

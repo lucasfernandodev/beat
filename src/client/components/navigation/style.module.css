@@ -1,0 +1,29 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  color: #f2f2f2;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  color: #aaa;
+
+  &[data-active="true"] {
+    color: #fff;
+    background: #1f1f1f;
+  }
+}
