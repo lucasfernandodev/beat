@@ -1,10 +1,35 @@
+import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from 'fastify-type-provider-zod';
 import { resolve } from 'node:path'
-import Fastify from 'fastify'
+import Fastify, { type FastifyBaseLogger, type FastifyInstance, type FastifyPluginAsync, type FastifyPluginOptions, type RawReplyDefaultExpression, type RawRequestDefaultExpression, type RawServerBase, type RawServerDefault } from 'fastify'
 import FastifyVite from '@fastify/vite'
+import { ApiPatientsRoute } from '../../infra/http/routes/patient/index.ts';
+import { fastifyErrorHandle } from './error-handle.ts';
 
+declare global {
+  type FastifyPluginAsyncZod<
+    Options extends FastifyPluginOptions = Record<never, never>,
+    Server extends RawServerBase = RawServerDefault> = FastifyPluginAsync<Options,
+      Server,
+      ZodTypeProvider
+    >;
+}
+
+export type FastifyTypedInstance = FastifyInstance<
+  RawServerDefault,
+  RawRequestDefaultExpression,
+  RawReplyDefaultExpression,
+  FastifyBaseLogger,
+  ZodTypeProvider
+>
 
 export class Server {
-  private fs = Fastify();
+  private fs = Fastify().withTypeProvider<ZodTypeProvider>();
+
+  constructor() {
+    this.fs.setValidatorCompiler(validatorCompiler);
+    this.fs.setSerializerCompiler(serializerCompiler);
+    this.fs.setErrorHandler(fastifyErrorHandle)
+  }
 
   private loadPlugins = async () => {
     await this.fs.register(FastifyVite, {
@@ -19,6 +44,12 @@ export class Server {
     this.fs.get('/', (req, reply) => {
       return reply.html()
     })
+
+    await this.fs.register(ApiPatientsRoute, {
+      prefix: '/api'
+    })
+
+    // Make front-end routes working correctly
     this.fs.get('/*', (req, reply) => {
       if (req.url.startsWith('/api/')) {
         return reply.callNotFound()
