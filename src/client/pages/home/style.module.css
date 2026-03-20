@@ -1,0 +1,42 @@
+.section {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  gap: 16px
+}
+
+.card {
+  width: 140px;
+  height: 180px;
+  border-radius: 16px;
+  background: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: 250ms linear;
+  color: #f2f2f2;
+  text-decoration: none;
+
+  &:hover {
+    position: relative;
+    transform: translateY(-3px);
+  }
+
+  & span {
+    text-transform: capitalize;
+  }
+
+  & .icon {
+    width: 48px;
+    height: 48px;
+    background-color: rgb(103, 152, 185);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+}

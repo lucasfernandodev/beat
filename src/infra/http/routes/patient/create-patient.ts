@@ -1,17 +1,11 @@
-import { z } from 'zod';
 import type { FastifyTypedInstance } from "../../../../lib/fastify/server.ts";
 import { prisma } from '../../../../lib/prisma/client.ts';
 import { BadRequest } from '../../../errors/bad-request.ts';
-
-const validation = z.object({
-  name: z.string(),
-  username: z.string(),
-  databaseId: z.string()
-})
+import { createPatientSchema } from '../../schema/create-patient.ts';
 
 const schema = {
   schema: {
-    body: validation
+    body: createPatientSchema
   }
 }
 
@@ -19,13 +13,13 @@ export const createPatientRoute = (app: FastifyTypedInstance) => {
   app.post('/patients', schema, async (req, reply) => {
     const { name, username, databaseId } = req.body;
 
-    const isUsername = prisma.patient.findFirst({
+    const isUsername = await prisma.patient.findFirst({
       where: {
         username
       }
     })
 
-    if (!isUsername) {
+    if (isUsername) {
       throw new BadRequest('Nome de usuário já está em uso')
     }
 
