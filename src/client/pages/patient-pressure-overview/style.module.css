@@ -1,0 +1,31 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 24px;
+  align-items: center;
+  border-bottom: 1px solid #1f1f1f;
+  height: 70px;
+}
+
+.profile {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  & .icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(103, 152, 185);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  & h3 {
+    font-size: 1.6rem;
+    text-transform: capitalize;
+  }
+}

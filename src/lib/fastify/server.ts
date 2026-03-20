@@ -4,6 +4,7 @@ import Fastify, { type FastifyBaseLogger, type FastifyInstance, type FastifyPlug
 import FastifyVite from '@fastify/vite'
 import { ApiPatientsRoute } from '../../infra/http/routes/patient/index.ts';
 import { fastifyErrorHandle } from './error-handle.ts';
+import { ApiPressureRoute } from '../../infra/http/routes/pressure/index.ts';
 
 declare global {
   type FastifyPluginAsyncZod<
@@ -46,6 +47,10 @@ export class Server {
     })
 
     await this.fs.register(ApiPatientsRoute, {
+      prefix: '/api'
+    })
+
+    await this.fs.register(ApiPressureRoute, {
       prefix: '/api'
     })
 

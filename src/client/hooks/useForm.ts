@@ -5,7 +5,7 @@ export const useForm = <T>(schema: z.ZodSchema<T>, initialValues: T) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({})
 
-  const handleChange = (key: keyof T) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (key: keyof T) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues({ ...values, [key]: e.target.value })
   }
 
