@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CreatePressureForm } from '../../components/CreatePressureForm';
 import type { ApiSession, PressureCategory } from '../../types/api-session';
 import { ClassifyTags } from '../../components/ClassifyTags';
+import { TodayPressureTable } from '../../components/TodayPressureTable';
 
 interface Response {
   success: boolean;
@@ -54,6 +55,7 @@ export const PatientPressureOverview = () => {
         </div>
         {data?.data?.username && <CreatePressureForm username={data?.data?.username} />}
       </header>
+      {data?.data?.username && <TodayPressureTable username={data?.data?.username} />}
     </Layout>
   );
 }
