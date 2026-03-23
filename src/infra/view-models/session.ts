@@ -1,5 +1,5 @@
-import type { Prisma } from "../../../../generated/prisma/client.ts";
-import { getDayPeriod } from "../../../utils/get-day-period.ts";
+import type { Prisma } from "../../../generated/prisma/client.ts";
+import { getDayPeriod } from "../../utils/get-day-period.ts";
 import { PressureViewModel } from "./pressure.ts";
 
 type MeasurementSessionOptionalPressures =

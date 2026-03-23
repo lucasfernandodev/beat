@@ -1,3 +1,4 @@
+import { eventBus } from "../../../../lib/event-bus/emiter.ts";
 import type { FastifyTypedInstance } from "../../../../lib/fastify/server.ts";
 import { prisma } from "../../../../lib/prisma/client.ts";
 import { BadRequest } from "../../../errors/bad-request.ts";
@@ -62,6 +63,10 @@ export const createPressureRoute = (app: FastifyTypedInstance) => {
           }
         })
 
+        eventBus.emit('pressure.created', {
+          patientId: isPatient.id
+        })
+
         return reply.code(200).send({
           success: true
         })
@@ -85,6 +90,10 @@ export const createPressureRoute = (app: FastifyTypedInstance) => {
           ]
         }
       }
+    })
+
+    eventBus.emit('pressure.created', {
+      patientId: isPatient.id
     })
 
     return reply.code(201).send({

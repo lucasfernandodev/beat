@@ -8,6 +8,7 @@ export const fastifyErrorHandle = async (error: unknown, _: any, reply: FastifyR
     error instanceof fastify.errorCodes.FST_ERR_BAD_STATUS_CODE ||
     error instanceof fastify.errorCodes.FST_ERR_VALIDATION
   ) {
+
     return reply.code(400).send({
       success: false,
       error: {

@@ -3,7 +3,7 @@ import type { FastifyTypedInstance } from "../../../../lib/fastify/server.ts";
 import { BadRequest } from "../../../errors/bad-request.ts";
 import { prisma } from "../../../../lib/prisma/client.ts";
 import { getDayRange } from "../../../../utils/get-day-range.ts";
-import { SessionViewModel } from "../../view-models/session.ts";
+import { SessionViewModel } from "../../../view-models/session.ts";
 import { createPatientSchema } from "../../schema/create-patient.ts";
 
 const schema = {

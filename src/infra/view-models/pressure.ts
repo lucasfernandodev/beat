@@ -1,5 +1,4 @@
-import type { Pressure } from "../../../../generated/prisma/client.ts";
-import { classifyPressureEn } from "../../../utils/classify-pressure-en.ts";
+import type { Pressure } from "../../../generated/prisma/client.ts";
 
 export class PressureViewModel {
   static toHttp = (raw: Pressure) => {
@@ -9,7 +8,6 @@ export class PressureViewModel {
       diastolic: raw.diastolic,
       heartRate: raw.heartRate,
       pressure: `${raw.systolic}/${raw.diastolic}`,
-      classify: classifyPressureEn(raw.systolic, raw.diastolic)
     }
   }
 }

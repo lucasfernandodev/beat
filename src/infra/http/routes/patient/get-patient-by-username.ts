@@ -1,7 +1,7 @@
 import { prisma } from "../../../../lib/prisma/client.ts";
 import { getPatientByUsername } from "../../schema/get-patient-by-username.ts";
 import type { FastifyTypedInstance } from "../../../../lib/fastify/server.ts";
-import { SessionViewModel } from "../../view-models/session.ts";
+import { SessionViewModel } from "../../../view-models/session.ts";
 
 const schema = {
   schema: {

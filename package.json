@@ -1,12 +1,13 @@
 {
 	"type": "module",
 	"scripts": {
-		"dev": "node src/main.ts --dev",
+		"dev": "node --env-file=.env src/main.ts --dev",
 		"start": "node  src/main.ts",
 		"build": "vite build"
 	},
 	"dependencies": {
 		"@fastify/vite": "^8.4.1",
+		"@notionhq/client": "^5.14.0",
 		"@prisma/adapter-better-sqlite3": "^7.5.0",
 		"@prisma/client": "^7.5.0",
 		"@radix-ui/react-dialog": "^1.1.15",

@@ -4,6 +4,19 @@
   border-radius: 8px;
   border: 1px solid #1f1f1f;
   cursor: default;
-  background: none;
+  background: linear-gradient(transparent, transparent);
   color: #ddd;
+  position: relative;
+
+}
+
+.button span {
+  font-size: 1rem;
+  padding: 4px;
+  background: #26ecec;
+  color: #111;
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  border-radius: 50%;
 }

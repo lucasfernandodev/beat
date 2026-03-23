@@ -18,7 +18,6 @@ export interface ApiPressure {
   diastolic: number,
   heartRate: number,
   pressure: string,
-  classify: PressureCategory
 }
 
 export interface ApiSession {
