@@ -18,7 +18,7 @@ export const PeriodTags: FC<PeriodTagsProps> = ({ period }) => {
   return (
     <span
       style={{ background: colorMap[period] }}
-      className={S.classifyTag}
+      className={S.period_tags}
       title="Classificação da ultima medição"
     >
       {dayPeriodToPtBr(period)}

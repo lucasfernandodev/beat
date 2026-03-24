@@ -24,8 +24,29 @@
     text-transform: uppercase;
   }
 
+  & svg {
+    width: 13px;
+    height: 13px;
+  }
+
   & h3 {
     font-size: 1.6rem;
     text-transform: capitalize;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0px 16px
+  }
+
+  .profile {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & span,
+    & svg {
+      display: none;
+    }
   }
 }

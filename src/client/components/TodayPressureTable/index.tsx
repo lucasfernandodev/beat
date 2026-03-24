@@ -6,6 +6,9 @@ import { ClassifyTags } from '../ClassifyTags';
 import { formatDateToBr } from '../../utils/format-date-to-br';
 import { PeriodTags } from '../PeriodTags';
 import { classifyPressureEn } from '../../utils/classify-pressure-en';
+import { Table } from '../table';
+import { getAverage } from '../../utils/get-average';
+import { getAveragePressure } from '../../utils/get-average-pressure';
 
 interface TodayPressureTableProps {
   username: string;
@@ -38,33 +41,51 @@ export const TodayPressureTable: FC<TodayPressureTableProps> = ({
       <h3>
         <span>Medições de hoje</span>
       </h3>
-      <table className={S.table}>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>período</th>
-            <th>Pressão</th>
-            <th>Coração</th>
-            <th>Classificação</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table.Root className={S.table}>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Data</Table.HeaderCell>
+            <Table.HeaderCell>período</Table.HeaderCell>
+            <Table.HeaderCell>Pressão</Table.HeaderCell>
+            <Table.HeaderCell data-header-type="heart">Coração</Table.HeaderCell>
+            <Table.HeaderCell>Status</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {sortedData.map(values => {
+
+            const avgSystolic = getAverage(values.pressures, p => p.systolic);
+
+            const avgDystolic = getAverage(values.pressures, p => p.diastolic);
+
+            const mHeart = getAverage(values.pressures, p => p.heartRate);
+
+            const pressure = getAveragePressure(values.pressures, p => ({
+              systolic: p.systolic,
+              diastolic: p.diastolic,
+            }));
+
+            const data = formatDateToBr(values.measuredAt)
+
             return (
-              <tr>
-                <td>{formatDateToBr(values.measuredAt)}</td>
-                <td><PeriodTags period={values.period} /></td>
-                <td>{values.pressures[0].pressure}</td>
-                <td>{values.pressures[0].heartRate}</td>
-                <td><ClassifyTags classify={classifyPressureEn(
-                  values.pressures[0].systolic,
-                  values.pressures[0].diastolic
-                )} /></td>
-              </tr>
+              <Table.Row>
+                <Table.Cell data-type="date">
+                  {data.split(" ").map((v, i) => (
+                    <span key={i}>{v}</span>
+                  ))}
+                </Table.Cell>
+                <Table.Cell><PeriodTags period={values.period} /></Table.Cell>
+                <Table.Cell>{pressure}</Table.Cell>
+                <Table.Cell data-body-type="heart">{mHeart}</Table.Cell>
+                <Table.Cell><ClassifyTags classify={classifyPressureEn(
+                  avgSystolic,
+                  avgDystolic
+                )} /></Table.Cell>
+              </Table.Row>
             )
           })}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table.Root>
       {sortedData.length === 0 && <p className={S.empty_table_message}>Nenhuma medição feita hoje</p>}
     </section>
   )

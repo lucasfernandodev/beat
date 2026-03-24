@@ -18,6 +18,19 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .add_pressure {
+    min-width: unset;
+    padding: 0px 12px;
+    font-weight: 1.4rem;
+
+    & svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
 .m_overlay {
   background: rgba(0, 0, 0, 0.8);
   position: fixed;

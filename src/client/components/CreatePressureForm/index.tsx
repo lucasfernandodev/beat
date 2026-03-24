@@ -50,7 +50,7 @@ export const CreatePressureForm: FC<CreatePressureFormProps> = ({
       <Trigger asChild>
         <button className={S.add_pressure}>
           <IconPlus />
-          <span>Adicionar medição</span>
+          <span>Nova medição</span>
         </button>
       </Trigger>
       <Portal>

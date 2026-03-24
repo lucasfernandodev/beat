@@ -8,6 +8,7 @@ import { ClassifyTags } from '../../components/ClassifyTags';
 import { TodayPressureTable } from '../../components/TodayPressureTable';
 import { classifyPressureEn } from '../../utils/classify-pressure-en';
 import { DailyPressureTable } from '../../components/DailyPressureTable';
+import { IconPointFilled } from '@tabler/icons-react';
 
 interface Response {
   success: boolean;
@@ -55,7 +56,7 @@ export const PatientPressureOverview = () => {
             {data?.data?.name[0]}
           </div>
           <h3>{data?.data?.name}</h3>
-          {classify && <span>-</span>}
+          {classify && <span><IconPointFilled /></span>}
           {classify && <ClassifyTags classify={classify} />}
         </div>
         {data?.data?.username && <CreatePressureForm username={data?.data?.username} />}

@@ -26,3 +26,26 @@
   width: calc(100vw - 70px);
   height: auto;
 }
+
+@media screen and (max-width: 768px) {
+  .app {
+    align-content: flex-start;
+  }
+
+  .header {
+    height: 70px;
+    flex-direction: row;
+    width: 100vw;
+    border-right: none;
+    border-bottom: 1px solid #1f1f1f;
+    padding: 0px 16px;
+
+    &>*:last-child {
+      display: none;
+    }
+  }
+
+  .main {
+    width: 100%;
+  }
+}
